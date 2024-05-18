@@ -1,0 +1,46 @@
+Using the practice database provided in this module, create queries to answer to the following questions:
+
+1.List the customers who made purchases between 2011 and 2012.
+
+SELECT FirstName, LastName
+FROM Customer
+WHERE CustomerId IN (
+    SELECT DISTINCT CustomerId
+    FROM Invoice
+    WHERE InvoiceDate BETWEEN '2011-01-01' AND '2012-12-31'
+);
+
+2. List the customers, sales reps and total transaction amounts for each customer in the same period of time.
+
+SELECT
+    c.FirstName AS CustomerFirstName,
+    c.LastName AS CustomerLastName,
+    e.FirstName AS SalesRepFirstName,
+    e.LastName AS SalesRepLastName,
+    SUM(i.Total) AS TotalTransactionAmount
+FROM Customer AS c
+INNER JOIN Employee AS e ON c.SupportRepId = e.EmployeeId
+INNER JOIN Invoice AS i ON c.CustomerId = i.CustomerId
+WHERE i.InvoiceDate BETWEEN '2011-01-01' AND '2012-12-31'
+GROUP BY c.CustomerId
+ORDER BY CustomerFirstName, CustomerLastName;
+
+3. How many transactions are above the average transaction amount during said time?
+
+SELECT COUNT(*) AS AboveAverageTransactions
+FROM Invoice
+WHERE InvoiceDate BETWEEN '2011-01-01' AND '2012-12-31'
+  AND Total > (
+    SELECT AVG(Total)
+    FROM Invoice
+    WHERE InvoiceDate BETWEEN '2011-01-01' AND '2012-12-31'
+  );
+
+4. What was the average transaction amount for each year?
+
+SELECT
+    SUBSTR(InvoiceDate, 1, 4) AS Year,
+    AVG(Total) AS AverageTransactionAmount
+FROM Invoice
+GROUP BY SUBSTR(InvoiceDate, 1, 4)
+ORDER BY Year;

@@ -1,0 +1,32 @@
+Using the Some_Records Database from Week 3, create the following queries using the new SQL commands learnt this week.
+
+1.Create a mailing list of US based customers using string concatenation.
+This must show: First Name, Last Name, Address, City, State and Postal Code (only the first 5 digits).
+The bucket must be called MailingAddress.
+
+SELECT
+    FirstName || ' ' || LastName AS Full_Name,
+    Address,
+    City,
+    State,
+    SUBSTR(PostalCode, 1, 5) AS Postal_Code
+FROM Customer
+WHERE Country = 'USA';
+
+2. Calculate the ages of the employees using STRFTIME.
+
+SELECT
+    EmployeeId,
+    FirstName || ' ' || LastName AS Full_Name,
+    STRFTIME('%Y', 'now') - STRFTIME('%Y', Birthdate) - (STRFTIME('%m-%d', 'now') < STRFTIME('%m-%d', Birthdate)) AS Age
+FROM Employee;
+
+3. Using aggregate functions calculate: Total Sales, Average Sales, Top Sale, Lowest Sale and the Amount of Sales.
+
+SELECT
+    SUM(total) AS Total_Sales,
+    AVG(total) AS Average_Sales,
+    MAX(total) AS Top_Sale,
+    MIN (total)AS Lowest_Sale,
+    COUNT(total) AS Amount_of_Sales
+FROM Invoice;

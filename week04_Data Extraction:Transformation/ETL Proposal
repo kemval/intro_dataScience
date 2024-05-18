@@ -1,0 +1,37 @@
+ETL Proposal for IDS Company
+
+Extract Stage:
+
+In the first step, we'll gather different types of data that are important for our company. This data comes from various sources:
+
+1. Our Own Records: We'll take data from our internal databases, like sales info, customer details, and employee records.
+
+2. Outside Information: We'll also get data from external sources through things like website APIs. This could be stuff like market trends, weather data, or social media opinions.
+
+3. Web Data: Sometimes, we'll need to scrape data from websites. This could be things like checking competitor prices or getting product reviews.
+
+4. Files: We'll collect data from files, like spreadsheets or text files. These might come from partners, suppliers, or customers.
+
+Transform Stage:
+
+Next, we'll make sure the data is in good shape for us to use. We'll do things like:
+
+1. Data Cleaning: We'll fix issues like missing data, duplicates, or strange numbers. This makes sure our data is accurate.
+
+2. Data Standardization: We'll make sure everything is in the same format. For example, if one place uses inches and another uses centimeters, we'll make them consistent.
+
+3. Creating New Data: Sometimes, we'll create new pieces of data by combining or changing existing ones. This helps us answer specific questions or do calculations.
+
+Load Stage:
+
+In the last step, we'll decide where to keep all this organized and cleaned-up data. We'll use something called a data warehouse for these reasons:
+
+1. Putting Data in One Place: A data warehouse keeps everything in one spot, making it easy to find and use.
+
+2. Fast Access: It's designed to be quick when we need to look up information or make reports.
+
+3. Keeping Data Safe: Data warehouses have good security features to protect our sensitive info.
+
+4. Growing with Us: They can handle lots of data, and we can make them bigger as we need to.
+
+We'll choose a cloud-based data warehouse like Amazon Redshift or Google BigQuery because they're flexible, reliable, and cost-effective.
